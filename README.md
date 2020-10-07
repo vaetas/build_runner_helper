@@ -14,4 +14,6 @@ pub global activate build_runner_helper
 
 Run `builder` to trigger build.
 
-Run `builder -w` to trigger build & watch for file changes.
+Run `builder -w` or `builder --watch` to trigger build & watch for file changes.
+
+Run `builder --help` to show usage help.
