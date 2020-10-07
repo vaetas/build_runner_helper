@@ -1,3 +1,8 @@
+## [0.3.0] - 2020-10-07
+
+* Improve argument handling with `args` package.
+* Add usage help.
+
 ## [0.2.0] - 2020-10-06
 
 * Fix project structure.

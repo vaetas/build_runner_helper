@@ -1,5 +1,5 @@
 name: build_runner_helper
-version: 0.2.0
+version: 0.3.0
 description: build_runner helper to save your fingers from writing the whole command
 homepage: https://github.com/vaetas/build_runner_helper
 
@@ -8,6 +8,9 @@ environment:
 
 executables:
   builder: 
+
+dependencies:
+  args: ^1.6.0
 
 dev_dependencies:
   pedantic: ^1.9.2

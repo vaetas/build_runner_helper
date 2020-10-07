@@ -10,6 +10,6 @@ Activate this package globally so you can access it as a regular command.
 pub global activate build_runner_helper
 ```
 
-Run `builder` or `builder build` to trigger build.
+Run `builder` to trigger build.
 
-Run `builder watch` to trigger watch.
+Run `builder -w` to trigger build & watch for file changes.

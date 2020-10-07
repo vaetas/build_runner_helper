@@ -1,1 +1,1 @@
-Run `builder` or `builder watch` inside your project.
+Run `builder` inside your project.
