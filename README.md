@@ -17,3 +17,5 @@ Run `builder` to trigger build.
 Run `builder -w` or `builder --watch` to trigger build & watch for file changes.
 
 Run `builder --help` to show usage help.
+
+Option `--delete-conflicting-outputs` is by enabled default. You can disable it. See help.

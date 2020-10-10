@@ -5,6 +5,7 @@ import 'package:args/args.dart';
 const _kHelpFlag = 'help';
 const _kBuildFlag = 'build';
 const _kWatchFlag = 'watch';
+const _kDeleteConflictingOutputsFlag = 'delete-conflicting-outputs';
 
 /// Start `build_runner` with optional [args].
 ///
@@ -34,6 +35,14 @@ void startBuildRunner(List<String> args) {
           'system for edits and does rebuilds as necessary.',
       negatable: false,
       defaultsTo: false,
+    )
+    ..addFlag(
+      _kDeleteConflictingOutputsFlag,
+      abbr: 'd',
+      help: 'Assume conflicting outputs in the users package are from previous '
+          'builds, and skip the user prompt that would usually be provided.',
+      negatable: true,
+      defaultsTo: true,
     );
 
   final results = parser.parse(args);
@@ -42,10 +51,16 @@ void startBuildRunner(List<String> args) {
     print(parser.usage);
   } else if (results[_kWatchFlag]) {
     print('Running build_runner watch...');
-    _runCommand(_kWatchFlag);
+    _runCommand(
+      _kWatchFlag,
+      deleteConflictingOutputs: results[_kDeleteConflictingOutputsFlag],
+    );
   } else if (results[_kBuildFlag]) {
     print('Running build_runner build...');
-    _runCommand(_kBuildFlag);
+    _runCommand(
+      _kBuildFlag,
+      deleteConflictingOutputs: results[_kDeleteConflictingOutputsFlag],
+    );
   } else {
     print('Invalid arguments: $args');
   }
@@ -56,10 +71,13 @@ void _printResult(ProcessResult result) {
   print(result.stderr);
 }
 
-void _runCommand(String param) {
+void _runCommand(String param, {bool deleteConflictingOutputs = true}) {
   Process.run(
-    'flutter packages pub run build_runner $param flutter packages pub run build_runner',
-    [],
+    'flutter packages pub run build_runner',
+    [
+      param,
+      if (deleteConflictingOutputs) '--delete-conflicting-outputs',
+    ],
     runInShell: true,
   ).then(_printResult);
 }
